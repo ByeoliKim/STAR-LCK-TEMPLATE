@@ -63,11 +63,11 @@ export const TEAM_CONFIGS: Record<string, Team> = {
         isPlaceholder: false,
       },
       {
-        id: "bot-empty",
-        name: "TBD",
+        id: "peyz",
+        name: "Peyz",
         role: "BOT",
-        image: "/teams/placeholder/silhouette.png",
-        isPlaceholder: true,
+        image: "/teams/t1/t1_bot_img.jpg",
+        isPlaceholder: false,
       },
     ],
   },
@@ -86,7 +86,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
         id: "kiin",
         name: "Kiin",
         role: "TOP",
-        image: "/teams/geng/geng_top_img.png",
+        image: "/teams/geng/geng_top_img.jpg",
         isPlaceholder: false,
       },
 
@@ -94,7 +94,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
         id: "canyon",
         name: "Canyon",
         role: "JGL",
-        image: "/teams/geng/geng_jgl_img.png",
+        image: "/teams/geng/geng_jgl_img.jpg",
         isPlaceholder: true,
       },
       {

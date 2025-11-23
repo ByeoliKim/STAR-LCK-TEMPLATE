@@ -1,16 +1,18 @@
 import Image from "next/image";
+import mainBanner from "@/public/main/ddb_1_img.png";
 import { TEAM_CONFIGS } from "@/lib/config/teams";
 import { PlayerCard } from "@/components/PlayerCard";
 import { FadeInSection } from "@/components/FadeInSection";
+
+const MAIN_COLOR = "#E83A74"; // Main Color
 
 export default function HomePage() {
   const team = TEAM_CONFIGS.t1;
 
   return (
     <>
-      <main className="pt-40 min-h-screen bg-linear-to-b from-black via-zinc-950 to-black text-white">
-        <section className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10">
-          {/* 히어로 액션 */}
+      <main className="relative pt-10 sm:pt-5 min-h-screen overflow-hidden bg-black text-white">
+        {/* <section className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10">
           <FadeInSection>
             <h2>ONE AND ONLY T1 TEMPLATE</h2>
           </FadeInSection>
@@ -20,7 +22,6 @@ export default function HomePage() {
               바꿔끼우면 Gen.G / KT / HLE 전부 커버 가능.
             </p>
           </FadeInSection>
-          {/* 플레이어 그리드 */}
           <FadeInSection delay={0.9}>
             <h2 className="text-2xl font-semibold md:text-3xl">
               CURRENT ROSTER
@@ -33,7 +34,35 @@ export default function HomePage() {
               ))}
             </div>
           </FadeInSection>
-        </section>
+        </section> */}
+        {/* 좌상단 + 우하단 글로우 */}
+        <div
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage: `
+            radial-gradient(circle at 15% 20%, rgba(255,255,255,0.05), transparent 60%),
+            radial-gradient(circle at 85% 80%, rgba(255,255,255,0.04), transparent 60%)
+          `,
+          }}
+        />
+        {/* 중앙 흐릿한 라이트 밴드 */}
+        <div className="pointer-events-none absolute inset-x-[-15%] top-1/2 h-[45%] -translate-y-1/2 bg-linear-to-r from-white/10 via-white/0 to-white/10 opacity-[0.28] blur-[120px]" />
+        {/* 노이즈 텍스처 (고급 e스포츠 느낌에서 거의 필수) */}
+        <div className="pointer-events-none absolute inset-0 opacity-[0.1] mix-blend-overlay">
+          <div className="h-full w-full bg-[url('/noise.png')] bg-repeat" />
+        </div>
+
+        <div className="w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto px-5">
+          <h2 className="w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
+            STAR TEMPLATE.
+          </h2>
+          {/* 실제 콘텐츠 */}
+          <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
+            <div className="">
+              <Image src={mainBanner} alt="main banner" width={600} />
+            </div>
+          </section>
+        </div>
       </main>
     </>
   );
