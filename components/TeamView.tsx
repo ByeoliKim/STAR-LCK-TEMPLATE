@@ -68,6 +68,9 @@ export function TeamView({ team }: TeamViewProps) {
                       <span className="font-semibold tracking-[0.18em]">
                         {role}
                       </span>
+                      <span>
+                        {player ? isPlaceholder ?}
+                      </span>
                     </button>
                   </>
                 );
