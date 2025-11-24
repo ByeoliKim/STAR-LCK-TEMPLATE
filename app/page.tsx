@@ -1,6 +1,7 @@
 import Image from "next/image";
 import mainBanner from "@/public/main/ddb_1_img.png";
 import { TEAM_CONFIGS } from "@/lib/config/teams";
+import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
 import { PlayerCard } from "@/components/PlayerCard";
 import { FadeInSection } from "@/components/FadeInSection";
 
@@ -52,16 +53,28 @@ export default function HomePage() {
           <div className="h-full w-full bg-[url('/noise.png')] bg-repeat" />
         </div>
 
-        <div className="w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto px-5">
-          <h2 className="w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
-            STAR TEMPLATE.
-          </h2>
-          {/* 실제 콘텐츠 */}
-          <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
-            <div className="">
-              <Image src={mainBanner} alt="main banner" width={600} />
+        <div className="">
+          <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto">
+            <h2 className="w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
+              STAR TEMPLATE.
+            </h2>
+            {/* 실제 콘텐츠 */}
+            <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
+              <div className="">
+                <Image src={mainBanner} alt="main banner" width={600} />
+              </div>
+            </section>
+            <div className="absolute lg:translate-y-[2em] md:translate-y-[-3em] sm:translate-y-[-2em] w-full z-9">
+              <RepeatedOutlineText
+                text="KIMSTAR"
+                repeat={5}
+                align="left"
+                fillColor="#ffffff"
+                strokeColor="#6b7280"
+                className="drop-shadow-[0_0_30px_rgba(0,0,0,0.9)]"
+              />
             </div>
-          </section>
+          </div>
         </div>
       </main>
     </>
