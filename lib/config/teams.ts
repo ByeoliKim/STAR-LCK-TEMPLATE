@@ -52,7 +52,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
         id: "faker",
         name: "Faker",
         role: "MID",
-        image: "/teams/t1/t1_mid_img.jpg",
+        image: "/teams/t1/t1_mid_img.png",
         isPlaceholder: false,
       },
       {

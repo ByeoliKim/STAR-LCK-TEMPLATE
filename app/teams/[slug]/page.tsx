@@ -2,6 +2,7 @@
 import { notFound } from "next/navigation";
 import { TEAM_CONFIGS } from "@/lib/config/teams";
 import { PlayerCard } from "@/components/PlayerCard";
+import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
 
 type TeamPageProps = {
   // ⬅️ 이제 params는 Promise 타입
