@@ -44,7 +44,7 @@ export function TeamView({ team }: TeamViewProps) {
               </div>
             </div>
             {/* 포지션 탭 */}
-            <div className="">
+            <div className="flex gap-2 overflow-x-auto lg:flex-col lg:gap-3">
               {ROLES.map((role) => {
                 const player = team.players.find((p) => p.role === role);
                 const isActive = selectedRole === role;
@@ -68,8 +68,12 @@ export function TeamView({ team }: TeamViewProps) {
                       <span className="font-semibold tracking-[0.18em]">
                         {role}
                       </span>
-                      <span>
-                        {player ? isPlaceholder ?}
+                      <span className="ml-2 truncate text-[11px] text-neutral-400">
+                        {player
+                          ? isPlaceholder
+                            ? "TBD"
+                            : player.name
+                          : "NO PLAYER"}
                       </span>
                     </button>
                   </>
@@ -77,6 +81,30 @@ export function TeamView({ team }: TeamViewProps) {
               })}
             </div>
           </aside>
+          {/* 우측 배경 RepeatedOutlineText + PlayerCard */}
+          <main className="relative flex-1">
+            {/* 배경 텍스트 */}
+            {selectedPlayer && (
+              <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center opacity-20">
+                <RepeatedOutlineText
+                  text={
+                    selectedPlayer.isPlaceholder
+                      ? "COMING SOON"
+                      : selectedPlayer.name.toUpperCase()
+                  }
+                  repeat={3}
+                  className="text-center"
+                  fillColor=""
+                />
+              </div>
+            )}
+            {/* 실제 카드 */}
+            <div className="relative max-auto max-w-md lg:ml-auto lg:mr-8">
+              {selectedPlayer && (
+                <PlayerCard player={selectedPlayer} team={team} />
+              )}
+            </div>
+          </main>
         </div>
       </div>
     </>
