@@ -1,11 +1,19 @@
 "use client";
 
+// 팀 상세 페이지의 메인 뷰 컴포넌트
+// 좌측 롤 포지션 탭 (TOP / JGL / MID / BOT / SPT)
+// 중앙 플레이어 카드 영역
+// 하단 팀 슬로건 스크롤 섹션
+// 포지션 선택 상태는 전역 스토어 (useLckStore) 를 사용한다.
+// 팀 정보 (팀명, 로고, 슬로건, 팀컬러, 플레이어 목록) 은 상위 props 로 받는 구조로 설계함.
+
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import type { Team, LolRole } from "@/lib/config/teams";
 import { PlayerCard } from "./PlayerCard";
 import { RepeatedOutlineText } from "./RepeatedOutlineText";
-import { ScrollSlogan } from "./ScrollSlogan";
+import ScrollVelocity from "./ScrollVelocity";
+import { useLckStore } from "@/lib/store/lckStore";
 
 const ROLES: LolRole[] = ["TOP", "JGL", "MID", "BOT", "SPT"];
 
@@ -14,36 +22,44 @@ type TeamViewProps = {
 };
 
 export function TeamView({ team }: TeamViewProps) {
-  const [selectedRole, setSelectedRole] = useState<LolRole>("TOP");
+  // 전역 스토어에서 현재 선택된 포지션 setter 가져온다.
+  //const [selectedRole, setSelectedRole] = useState<LolRole>("TOP");
+  const selectedRole = useLckStore((r) => r.selectedRole);
+  const setSelectedRole = useLckStore((r) => r.setSelectedRole);
 
+  const scrollVelocity = useLckStore((s) => s.scrollVelocity);
+
+  // 선택된 포지션에 해당하는 플레이어 찾기
+  // useMemo 를 사용하여 성능최적화 함
   const selectedPlayer = useMemo(
     () => team.players.find((p) => p.role === selectedRole),
     [team.players, selectedRole]
   );
 
+  // 롤 포지션 탭
   const ROLE_TABS = [
     {
-      key: "TOP",
+      key: "TOP" as LolRole,
       label: "TOP",
       icon: "/positions/top.svg",
     },
     {
-      key: "JGL",
+      key: "JGL" as LolRole,
       label: "JUNGLE",
       icon: "/positions/jgl.svg",
     },
     {
-      key: "MID",
+      key: "MID" as LolRole,
       label: "MID",
       icon: "/positions/mid.svg",
     },
     {
-      key: "BOT",
+      key: "BOT" as LolRole,
       label: "BOT",
       icon: "/positions/bot.webp",
     },
     {
-      key: "SPT",
+      key: "SPT" as LolRole,
       label: "SUPPORT",
       icon: "/positions/spt.svg",
     },
@@ -52,19 +68,23 @@ export function TeamView({ team }: TeamViewProps) {
   return (
     <>
       <div
-        className="min-h-screen px-4 py-10 text-white mix-blend-difference"
+        // 팀 페이지의 배경색은 팀 메인컬러 / 서브컬러로 그라데이션 처리함
+        // 컬러 팔레트만 바꾸면 전체 페이지 무드 바뀌도록 설계
+        // lib/config/teams.ts colors 참고
+        className="min-h-[200vh] px-4 py-10 text-white mix-blend-difference"
         style={{
           background: `linear-gradient(135deg, ${team.colors.primary}, ${team.colors.secondary})`,
         }}
       >
         <div className="mx-auto h-[94vh] flex max-w-6xl flex-col gap-10 lg:flex-col">
-          {/* 좌측 포지션 탭 */}
+          {/* =======================
+            좌측: 롤 포지션 탭 영역
+           ======================= */}
           <aside className="absolute left-0 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-3 bg-[#00000078] px-4 py-6">
             {ROLE_TABS.map(({ key, icon }) => {
               const player = team.players.find((p) => p.role === key);
               const isActive = selectedRole === key;
               const isPlaceholder = player?.isPlaceholder;
-
               return (
                 <button
                   key={key}
@@ -89,15 +109,17 @@ export function TeamView({ team }: TeamViewProps) {
               );
             })}
           </aside>
-          {/* RepeatedOutlineText + PlayerCard */}
+          {/* =======================
+              중앙 영역 : 플레이어 카드 + BG RepeatedOutlineText
+             ======================= */}
           <main className="relative flex items-center justify-center h-full">
-            {/* player 프로필 */}
+            {/* player 프로필 카드 */}
             {selectedPlayer && (
               <div className="relative w-full z-1">
                 <PlayerCard player={selectedPlayer} team={team} />
               </div>
             )}
-            {/* player name text repeat  */}
+            {/* player name 텍스트 반복 (백그라운드 연출용)  */}
             {selectedPlayer && (
               <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-start mix-blend-multiply overflow-hidden">
                 <RepeatedOutlineText
@@ -106,8 +128,8 @@ export function TeamView({ team }: TeamViewProps) {
                       ? "COMING SOON"
                       : selectedPlayer.name.toUpperCase()
                   }
-                  repeat={5}
-                  horizontalRepeat={8}
+                  repeat={5} // 세로 반복 횟수
+                  horizontalRepeat={8} // 가로 반복 횟수
                   className="text-center"
                   fillColor=""
                 />
@@ -115,7 +137,14 @@ export function TeamView({ team }: TeamViewProps) {
             )}
           </main>
         </div>
-        <ScrollSlogan slogan={team.slogan} primaryColor={team.colors.accent} />
+        {/* =======================
+            하단: 팀 슬로건 스크롤 텍스트
+           ======================= */}
+        <ScrollVelocity
+          texts={[team.slogan, team.slogan2]}
+          velocity={scrollVelocity}
+          className="custom-scroll-text"
+        />
       </div>
     </>
   );
