@@ -4,6 +4,7 @@ import { TEAM_CONFIGS } from "@/lib/config/teams";
 import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
 import { PlayerCard } from "@/components/PlayerCard";
 import { FadeInSection } from "@/components/FadeInSection";
+import Link from "next/link";
 
 const MAIN_COLOR = "#E83A74"; // Main Color
 
@@ -58,12 +59,37 @@ export default function HomePage() {
             <h2 className="w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
             </h2>
+            <div className="absolute right-0 z-10">
+              <ul>
+                <li>
+                  <Link href="/teams/t1">
+                    <span className="text-white">T1</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/teams/geng">
+                    <span className="text-white">GEN</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/teams/kt">
+                    <span className="text-white">KT</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/teams/hle">
+                    <span className="text-white">HLE</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
             {/* 실제 콘텐츠 */}
             <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
               <div className="">
                 <Image src={mainBanner} alt="main banner" width={600} />
               </div>
             </section>
+
             <div className="absolute lg:translate-y-[2em] md:translate-y-[-3em] sm:translate-y-[-2em] w-full z-9">
               <RepeatedOutlineText
                 text="KIMSTAR"
