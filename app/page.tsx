@@ -14,30 +14,6 @@ export default function HomePage() {
   return (
     <>
       <main className="relative pt-10 sm:pt-5 min-h-screen overflow-hidden bg-black text-white">
-        {/* <section className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-10">
-          <FadeInSection>
-            <h2>ONE AND ONLY T1 TEMPLATE</h2>
-          </FadeInSection>
-          <FadeInSection delay={0.4}>
-            <p>
-              LOL 프로팀 랜딩 페이지를 위한 재사용 가능한 템플릿. 팀만
-              바꿔끼우면 Gen.G / KT / HLE 전부 커버 가능.
-            </p>
-          </FadeInSection>
-          <FadeInSection delay={0.9}>
-            <h2 className="text-2xl font-semibold md:text-3xl">
-              CURRENT ROSTER
-            </h2>
-          </FadeInSection>
-          <FadeInSection delay={1.3}>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-              {team.players.map((player) => (
-                <PlayerCard key={player.id} player={player} team={team} />
-              ))}
-            </div>
-          </FadeInSection>
-        </section> */}
-        {/* 좌상단 + 우하단 글로우 */}
         <div
           className="pointer-events-none absolute inset-0"
           style={{
@@ -55,8 +31,8 @@ export default function HomePage() {
         </div>
 
         <div className="">
-          <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto">
-            <h2 className="w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
+          <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden">
+            <h2 className="w-full mb-2 pb-2 text-left text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
             </h2>
             <div className="absolute right-0 z-10">

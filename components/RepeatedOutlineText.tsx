@@ -4,7 +4,8 @@ import clsx from "clsx";
 
 type RepeatedOutlineTextProps = {
   text: string;
-  repeat?: number;
+  repeat?: number; // 세로 반복
+  horizontalRepeat?: number; // 가로 반복
   className?: string;
   align?: "left" | "center" | "right" /** 텍스트 정렬 */;
   fillColor: string /** 채워진 텍스트 색 */;
@@ -14,6 +15,7 @@ type RepeatedOutlineTextProps = {
 export function RepeatedOutlineText({
   text,
   repeat = 4,
+  horizontalRepeat = 4,
   className,
   align = "left",
   fillColor = "#ffffff",
@@ -28,35 +30,31 @@ export function RepeatedOutlineText({
   return (
     <div
       className={clsx(
-        "flex flex-col gap-1 leading-none select-none",
+        "flex flex-col gap-1 leading-none select-none bg-black",
         alignClass,
         className
       )}
     >
       {Array.from({
         length: repeat,
-      }).map((_, idx) => (
+      }).map((_, rowIndex) => (
         <div
-          key={idx}
-          className="leading-[-0.8px] flex itmes-baseline uppercase tracking-[-0.2em]"
+          key={rowIndex}
+          className="flex itmes-baseline leading-[-0.8px] uppercase tracking-[-0.2em]"
         >
-          {/* 꽉 찬 텍스트 */}
-          <span
-            className="font-extrabold text-[32px] sm:text-[40px] md:text-[56px] lg:text-[120px]"
-            style={{ color: fillColor }}
-          >
-            {text}
-          </span>
-          {/* 테두리만 있는 텍스트 */}
-          <span
-            className="font-extrabold text-[32px] sm:text-[40px] md:text-[56px] lg:text-[120px]"
-            style={{
-              color: "transparent",
-              WebkitTextStroke: `1.5px ${strokeColor}`,
-            }}
-          >
-            {text}
-          </span>
+          {Array.from({ length: horizontalRepeat }).map((_, index) => (
+            <span
+              key={index}
+              className="font-extrabold text-[32px] sm:text-[40px] md:text-[56px] lg:text-[120px] mr-2"
+              style={{
+                color: index % 2 === 0 ? fillColor : "transparent",
+                WebkitTextStroke:
+                  index % 2 === 1 ? `1.5px ${strokeColor}` : undefined,
+              }}
+            >
+              {text}
+            </span>
+          ))}
         </div>
       ))}
     </div>
