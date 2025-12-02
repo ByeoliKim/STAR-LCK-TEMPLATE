@@ -19,39 +19,23 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
     : `${primaryColor}66`;
 
   return (
-    <div
-      className={`
-          group relative flex flex-col overflow-hidden rounded-2xl
-          bg-linear-to-b from-neutral-900/80 to-black
-          shadow-[0_0_25px_rgba(0,0,0,0.55)]
-          transition-transform duration-300 hover:-translate-y-1 hover:shadow-[0_0_35px_rgba(0,0,0,0.8)]`}
-      style={{
-        border: `1px solid ${borderColor}`,
-        boxShadow: `0 0 22px ${glowColor}`,
-      }}
-    >
-      {/* 상단 역할 / 팀 태그 */}
-      <div className="absolute left-3 top-3 z-10 flex gap-1">
-        <span
-          className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tracking-[0.12em] ${
-            isPlaceholder
-              ? "bg-slate-800/90 text-slate-300"
-              : "bg-white/95 text-black"
-          }`}
-        >
-          {player.role}
-        </span>
-        {/* team 이 있을 때만 팀 이름 보여주기 */}
-        {!isPlaceholder && team && (
-          <span className="rounded-full bg-black/70 px-2 py-0.5 text-[10px] font-medium text-neutral-200">
-            {team.name}
-          </span>
-        )}
-      </div>
+    <div className={`group relative flex`}>
       {/* 이미지 영역 */}
-      <div className="relative h-56 w-full overflow-hidden">
+      <h2 className="absolute left-0 top-[-70px] h-auto w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
+        {player.name}.
+      </h2>
+      <div className="absolute right-0 top-[-68px]">
+        <Image
+          src={team.logo}
+          alt={team.name}
+          width={200}
+          height={200}
+          className="w-[100px] h-10"
+        />
+      </div>
+      <div className="relative w-[780px] h-[620px] mx-auto overflow-hidden">
         {/* 이미지 + 오버레이 묶임 */}
-        <div className="relative w-full h-full transition-transform duration-500 group-hover:scale-110">
+        <div className="relative -top-0.5 w-full h-full transition-transform duration-500">
           <Image
             src={player.image}
             alt={player.name}
@@ -59,15 +43,10 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
             className={`object-cover w-full h-full ${
               isPlaceholder ? "grayscale opacity-70" : ""
             }`}
-            sizes="(max-width: 768px) 50vw, 240px"
           />
           {/* 플레이어가 실제 선수일 때 살짝 그라데이션 */}
           {!isPlaceholder && (
-            <div
-              className="
-              pointer-events-none absolute inset-0 bg-linear-to-t from-black via-black/30 to-transparent
-            "
-            />
+            <div className="pointer-events-none absolute inset-0" />
           )}
           {/* Placeholder 전용 오버레이 */}
           {isPlaceholder && (
@@ -81,42 +60,6 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
             </div>
           )}
         </div>
-      </div>
-      {/* 텍스트 영역 */}
-      <div className="flex flex-1 flex-col gap-1 px-4 py-3">
-        <div className="flex items-baseline justify-between gap-2">
-          <h3
-            className={`text-sm font-semibold ${
-              isPlaceholder ? "text-slate-300/80" : "text-white"
-            }`}
-          >
-            {isPlaceholder ? "To Be Decided" : player.name}
-          </h3>
-          {/* 작은 상태 뱃지 */}
-          {isPlaceholder ? (
-            <span className="rounded-full bg-slate-800/80 px-2 py-0.5 text-[10px] font-medium text-slate-200">
-              OPEN SLOT
-            </span>
-          ) : (
-            <span
-              className="rounded-full px-2 py-0.5 text-[10px] font-medium text-neutral-200"
-              style={{
-                backgroundColor: `${primaryColor}20`,
-                border: `1px solid ${primaryColor}55`,
-              }}
-            >
-              STARTER
-            </span>
-          )}
-        </div>
-        {/* 설명 / 보조 텍스트 (나중에 교체 가능) */}
-        <p
-          className={`text-xs leading-relaxed ${
-            isPlaceholder ? "text-slate-400" : "text-neutral-300"
-          }`}
-        >
-          {isPlaceholder ? "COMING SOON" : "ROSTER MEMBER 🌟"}
-        </p>
       </div>
     </div>
   );
