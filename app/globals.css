@@ -63,13 +63,11 @@
     font-display: swap;
 }
 
-/* ✨ 1) keyframes 이름을 tailwind에 등록 */
 @theme default {
   --animate-shine: shine 5s linear infinite;
   @keyframes shine;
 }
 
-/* ✨ 2) keyframes 내용을 실제로 정의 (중요) */
 @keyframes shine {
   0% {
     background-position: -200% 0;
@@ -79,7 +77,6 @@
   }
 }
 
-/* ✨ 3) 커스텀 유틸리티 */
 @utility animate-shine {
   animation: var(--animate-shine);
 }
