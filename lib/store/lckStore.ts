@@ -18,8 +18,8 @@ type LckState = {
 
 // 스토어 생성
 export const useLckStore = create<LckState>((set) => ({
-  // 기본 포지션은 TOP 으로 설정
-  selectedRole: "TOP",
+  // 디폴트 포지션은 MID 으로 설정
+  selectedRole: "MID",
   setSelectedRole: (role) => set({ selectedRole: role }),
 
   // 텍스트 스크롤 속도 기본값

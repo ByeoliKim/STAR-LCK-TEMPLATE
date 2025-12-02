@@ -25,33 +25,17 @@ export default function HomePage() {
 
         <div className="">
           <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden">
-            <h2 className="w-full mb-2 pb-2 text-left text-5xl font-black tracking-tighter border-b">
+            <h2 className="flex w-full mb-3 pb-2 text-left text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
+              <strong
+                style={{
+                  marginLeft: "auto",
+                }}
+              >
+                LCK Ver.
+              </strong>
             </h2>
-            <div className="absolute right-0 z-10">
-              <ul>
-                <li>
-                  <Link href="/teams/t1">
-                    <span className="text-white">T1</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/teams/geng">
-                    <span className="text-white">GEN</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/teams/kt">
-                    <span className="text-white">KT</span>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/teams/hle">
-                    <span className="text-white">HLE</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+
             {/* 실제 콘텐츠 */}
             <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
               <div className="">
@@ -70,6 +54,30 @@ export default function HomePage() {
               />
             </div>
           </div>
+        </div>
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 px-4 py-4 bg-amber-50 z-10">
+          <ul className="text-black text-5xl font-black tracking-tighter">
+            <li>
+              <Link href="/teams/t1">
+                <span>T1</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/teams/geng">
+                <span>GEN</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/teams/kt">
+                <span>KT</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/teams/hle">
+                <span>HLE</span>
+              </Link>
+            </li>
+          </ul>
         </div>
       </main>
     </>
