@@ -14,6 +14,7 @@ export type Team = {
   name: string;
   logo: string;
   slogan: string;
+  slogan2: string;
   colors: {
     primary: string;
     secondary: string;
@@ -27,7 +28,8 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     slug: "t1",
     name: "T1",
     logo: "/teams/t1/logo_1.svg",
-    slogan: "BE:ING",
+    slogan: "Make Them Believe",
+    slogan2: "#TogetherAs1#T1inME",
     colors: {
       primary: "#e2012d",
       secondary: "#111111",
@@ -76,6 +78,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     name: "GEN.G",
     logo: "/teams/geng/logo_2.svg",
     slogan: "CHANGE THE GAME, CHANGE THE WORLD",
+    slogan2: "TIGERNATION",
     colors: {
       primary: "#aa8a00",
       secondary: "#111111",
@@ -125,6 +128,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     name: "kt Rolster",
     logo: "/teams/kt/logo_3.svg",
     slogan: "Time to Prove Our selves.",
+    slogan2: "We Make Legends",
     colors: {
       primary: "#ff0a07",
       secondary: "#111111",
@@ -173,6 +177,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     name: "HanHwa Life Esports",
     logo: "/teams/hle/logo_4.svg",
     slogan: "GREAT CHALLENGERS.",
+    slogan2: "WHY NOT?! SUPER DIVE",
     colors: {
       primary: "#f37321",
       secondary: "#FFFFFF",
