@@ -7,8 +7,6 @@ export default function Header() {
   const team = TEAM_CONFIGS.t1;
   return (
     <>
-      {/* 헤더 */}
-      {/* backdrop-blur-xs */}
       <header className="fixed w-[calc(100%-40px)] flex flex-col gap-4 justify-end md:flex-row items-end p-4 m-5 bg-transparent z-50">
         <Link href="/">
           <div className="group cursor-pointer inline-block">
