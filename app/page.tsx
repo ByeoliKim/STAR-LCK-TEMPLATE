@@ -1,16 +1,9 @@
 import Image from "next/image";
 import mainBanner from "@/public/main/ddb_1_img.png";
-import { TEAM_CONFIGS } from "@/lib/config/teams";
 import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
-import { PlayerCard } from "@/components/PlayerCard";
-import { FadeInSection } from "@/components/FadeInSection";
 import Link from "next/link";
 
-const MAIN_COLOR = "#E83A74"; // Main Color
-
 export default function HomePage() {
-  const team = TEAM_CONFIGS.t1;
-
   return (
     <>
       <main className="relative pt-10 sm:pt-5 min-h-screen overflow-hidden bg-black text-white">
@@ -25,7 +18,7 @@ export default function HomePage() {
         />
         {/* 중앙 흐릿한 라이트 밴드 */}
         <div className="pointer-events-none absolute inset-x-[-15%] top-1/2 h-[45%] -translate-y-1/2 bg-linear-to-r from-white/10 via-white/0 to-white/10 opacity-[0.28] blur-[120px]" />
-        {/* 노이즈 텍스처 (고급 e스포츠 느낌에서 거의 필수) */}
+        {/* 노이즈 텍스처 */}
         <div className="pointer-events-none absolute inset-0 opacity-[0.1] mix-blend-overlay">
           <div className="h-full w-full bg-[url('/noise.png')] bg-repeat" />
         </div>
