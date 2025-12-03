@@ -5,12 +5,12 @@ import { PlayerCard } from "@/components/PlayerCard";
 import { TeamView } from "@/components/TeamView";
 
 type TeamPageProps = {
-  // ⬅️ 이제 params는 Promise 타입
+  //params는 Promise 타입
   params: Promise<{ slug: string }>;
 };
 
 export default async function TeamPage({ params }: TeamPageProps) {
-  // ⬅️ 여기서 await 해서 slug 꺼내기
+  // await 해서 slug 꺼냄
   const { slug } = await params; // Next15 ver
   const team = TEAM_CONFIGS[slug];
 

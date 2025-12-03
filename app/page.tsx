@@ -35,14 +35,11 @@ export default function HomePage() {
                 LCK Ver.
               </strong>
             </h2>
-
-            {/* 실제 콘텐츠 */}
             <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
               <div className="">
                 <Image src={mainBanner} alt="main banner" width={600} />
               </div>
             </section>
-
             <div className="absolute lg:translate-y-[2em] md:translate-y-[-3em] sm:translate-y-[-2em] w-full z-9">
               <RepeatedOutlineText
                 text="KIMSTAR"
