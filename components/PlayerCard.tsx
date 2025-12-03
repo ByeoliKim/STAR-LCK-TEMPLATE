@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useLckStore } from "@/lib/store/lckStore";
 import type { Player, Team } from "@/lib/config/teams";
 
 type PlayerCardProps = {
@@ -11,16 +12,37 @@ type PlayerCardProps = {
 export function PlayerCard({ player, team }: PlayerCardProps) {
   //const { colors } = team;
   const isPlaceholder = player.isPlaceholder;
-  // ✅ team 이 없을 수도 있으니까 안전하게 기본 색 지정
+  // team 이 없을 수도 있으니까 안전하게 기본 색 지정
   const primaryColor = team?.colors.primary ?? "#e5e5e5";
   const borderColor = isPlaceholder ? "#4b5563" : primaryColor;
   const glowColor = isPlaceholder
     ? "rgba(148,163,184,0.4)"
     : `${primaryColor}66`;
 
+  const favorites = useLckStore((s) => s.favorites);
+  const toggleFavorite = useLckStore((s) => s.toggleFavorite);
+
+  const isFavorite = favorites.some(
+    (f) => f.teamSlug === team.slug && f.playerId === player.id
+  );
+
+  const handleToggleFavorite = () => {
+    toggleFavorite({ teamSlug: team.slug, playerId: player.id });
+  };
+
   return (
     <div className={`group relative flex`}>
       {/* 이미지 영역 */}
+      {/* 우측 상단 찜 버튼 */}
+      <button
+        type="button"
+        onClick={handleToggleFavorite}
+        className="absolute left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 text-xs"
+      >
+        <span className={isFavorite ? "text-yellow-300" : "text-neutral-400"}>
+          {isFavorite ? "★ 찜됨" : "☆ 찜하기"}
+        </span>
+      </button>
       <h2 className="absolute left-0 top-[-70px] h-auto w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
         {player.name}.
       </h2>
