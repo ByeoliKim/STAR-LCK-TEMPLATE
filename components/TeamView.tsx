@@ -143,16 +143,23 @@ export function TeamView({ team }: TeamViewProps) {
         <ScrollVelocity
           texts={[team.slogan, team.slogan2]}
           velocity={scrollVelocity}
-          className="custom-scroll-text"
+          className="custom-scroll-text figtree font-black"
         />
         {selectedPlayer && (
-          <div className="mx-auto max-w-6xl mt-6">
+          <div className="mx-auto max-w-6xl mt-6 figtree">
             <PlayerMostChamps
               champs={selectedPlayer.mostChamps}
               accentColor={team.colors.accent}
             />
           </div>
         )}
+        <div className="mx-auto max-w-6xl my-30">
+          <h4 className="font-black text-7xl text-center">
+            Legends Never Die
+            <br />
+            <strong className="text-9xl">{team.name}.</strong>
+          </h4>
+        </div>
       </div>
     </>
   );
