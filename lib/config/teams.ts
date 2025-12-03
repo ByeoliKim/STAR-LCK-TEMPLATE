@@ -345,7 +345,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
   },
   kt: {
     slug: "kt",
-    name: "kt Rolster",
+    name: "KT Rolster",
     logo: "/teams/kt/logo_3.svg",
     slogan: "Time to Prove Our selves.",
     slogan2: "We Make Legends",
