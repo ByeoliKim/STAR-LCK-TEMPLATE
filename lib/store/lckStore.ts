@@ -7,6 +7,13 @@ import { create } from "zustand";
 import type { LolRole } from "@/lib/config/teams";
 
 // 전역 상태 shape 정의
+
+// 찜한 선수 식별용 타입 (팀 + 선수 id)
+export type FavoritePlayerRef = {
+  teamSlug: string;
+  playerId: string;
+};
+
 type LckState = {
   // 현재 선택된 롤 포지션 (TOP / JGL / MID / BOT / SPT)
   selectedRole: LolRole;
@@ -14,10 +21,14 @@ type LckState = {
 
   scrollVelocity: number;
   setScrollVelocity: (velocity: number) => void;
+
+  // 전역 즐겨찾기(찜) 목록
+  favorites: FavoritePlayerRef[];
+  toggleFavorite: (ref: FavoritePlayerRef) => void;
 };
 
 // 스토어 생성
-export const useLckStore = create<LckState>((set) => ({
+export const useLckStore = create<LckState>((set, get) => ({
   // 디폴트 포지션은 MID 으로 설정
   selectedRole: "MID",
   setSelectedRole: (role) => set({ selectedRole: role }),
@@ -25,4 +36,22 @@ export const useLckStore = create<LckState>((set) => ({
   // 텍스트 스크롤 속도 기본값
   scrollVelocity: 50,
   setScrollVelocity: (velocity) => set({ scrollVelocity: velocity }),
+
+  favorites: [],
+  toggleFavorite: (ref) => {
+    const { favorites } = get();
+    const exists = favorites.some(
+      (f) => f.teamSlug === ref.teamSlug && f.playerId === ref.playerId
+    );
+    // 토글
+    if (exists) {
+      set({
+        favorites: favorites.filter(
+          (f) => !(f.teamSlug === ref.teamSlug && f.playerId === ref.playerId)
+        ),
+      });
+    } else {
+      set({ favorites: [...favorites, ref] });
+    }
+  },
 }));
