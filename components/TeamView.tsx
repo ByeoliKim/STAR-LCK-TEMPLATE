@@ -7,13 +7,14 @@
 // 포지션 선택 상태는 전역 스토어 (useLckStore) 를 사용한다.
 // 팀 정보 (팀명, 로고, 슬로건, 팀컬러, 플레이어 목록) 은 상위 props 로 받는 구조로 설계함.
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Image from "next/image";
 import type { Team, LolRole } from "@/lib/config/teams";
 import { PlayerCard } from "./PlayerCard";
 import { RepeatedOutlineText } from "./RepeatedOutlineText";
 import ScrollVelocity from "./ScrollVelocity";
 import { useLckStore } from "@/lib/store/lckStore";
+import { PlayerMostChamps } from "./PlayerMostChamps";
 
 const ROLES: LolRole[] = ["TOP", "JGL", "MID", "BOT", "SPT"];
 
@@ -23,7 +24,6 @@ type TeamViewProps = {
 
 export function TeamView({ team }: TeamViewProps) {
   // 전역 스토어에서 현재 선택된 포지션 setter 가져온다.
-  //const [selectedRole, setSelectedRole] = useState<LolRole>("TOP");
   const selectedRole = useLckStore((r) => r.selectedRole);
   const setSelectedRole = useLckStore((r) => r.setSelectedRole);
 
@@ -129,7 +129,7 @@ export function TeamView({ team }: TeamViewProps) {
                       : selectedPlayer.name.toUpperCase()
                   }
                   repeat={5} // 세로 반복 횟수
-                  horizontalRepeat={8} // 가로 반복 횟수
+                  horizontalRepeat={12} // 가로 반복 횟수
                   className="text-center"
                   fillColor=""
                 />
@@ -145,7 +145,16 @@ export function TeamView({ team }: TeamViewProps) {
           velocity={scrollVelocity}
           className="custom-scroll-text"
         />
+        {selectedPlayer && (
+          <div className="mx-auto max-w-6xl mt-6">
+            <PlayerMostChamps
+              champs={selectedPlayer.mostChamps}
+              accentColor={team.colors.accent}
+            />
+          </div>
+        )}
       </div>
     </>
   );
 }
+//
