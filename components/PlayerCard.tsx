@@ -43,7 +43,7 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
           {isFavorite ? "★ 찜됨" : "☆ 찜하기"}
         </span>
       </button>
-      <h2 className="absolute left-0 top-[-70px] h-auto w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
+      <h2 className="figtree absolute left-0 top-[-70px] h-auto w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
         {player.name}.
       </h2>
       <div className="absolute right-0 top-[-68px]">
