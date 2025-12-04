@@ -1,16 +1,44 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { TEAM_CONFIGS, type Team, type Player } from "@/lib/config/teams";
 import { useLckStore, type FavoritePlayerRef } from "@/lib/store/lckStore";
-import { PlayerMostChamps } from "@/components/PlayerMostChamps";
+import { motion } from "motion/react";
 
 type FavoritePlayerResolved = {
   ref: FavoritePlayerRef;
   team: Team;
   player: Player;
+};
+
+// 리스트 전체 콘테이너 모션 (stagger)
+const listVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.18, // 카드 간 시간차
+      delayChildren: 0.1, // 첫 카드 나오기 전 약간 텀
+    },
+  },
+};
+
+// 개별 카드 모션
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: -20,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
 };
 
 export default function FavoritesPage() {
@@ -34,9 +62,10 @@ export default function FavoritesPage() {
       {favoritePlayers.length === 0 ? null : (
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <div>
-            <h2>FAVORITE LIST</h2>
-            <p>관심 플레이어 ({favoritePlayers.length})</p>
-            <p>관심 버튼을 누른 플레이어 아카이빙 저장소</p>
+            <h2 className="figtree text-5xl font-black tracking-tighter">
+              FAVORITE LIST.
+            </h2>
+            <p>관심 플레이어가 노출됩니다.</p>
           </div>
         </div>
       )}
@@ -48,16 +77,45 @@ export default function FavoritesPage() {
         </div>
       ) : (
         // 관심 플레이어가 있을 경우
-        <div className="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2">
-          {favoritePlayers.map(({ ref, team, player }) => (
-            <article
-              key={`${ref.teamSlug}-${ref.playerId}`}
-              className="relative overflow-hidden rounded-3xl bg-white/5 p-4 shadow-lg shadow-black/40"
-            >
-              {/* 상단: 팀 정보 + 포지션 */}
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-12 w-12 overflow-hidden rounded-xl bg-black/60">
+        <motion.div
+          className="mx-auto mt-10 grid max-w-6xl gap-6 grid-cols-2 lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2"
+          variants={listVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {favoritePlayers.map(({ ref, team, player }) => {
+            const champs = player.mostChamps ?? [];
+            return (
+              <motion.article
+                key={`${ref.teamSlug}-${ref.playerId}`}
+                variants={cardVariants}
+                className="relative overflow-hidden rounded-3xl bg-white/5 p-4 shadow-lg shadow-black/40"
+              >
+                <div className="flex flex-col gap-4 md:flex-row">
+                  {/* 플레이어 이미지 영역 */}
+                  <div className="relative w-full aspect-3/4 sm:aspect-4/5 md:aspect-4/5 lg:h-80 flex-1 overflow-hidden rounded-xl bg-white/30">
+                    <Image
+                      src={player.image}
+                      alt={player.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
+                    <div className="absolute bottom-3 left-3">
+                      <p className="text-[16px] text-neutral-300 font-black tracking-tighter">
+                        PLAYER
+                      </p>
+                      <div className="w-full flex items-end justify-between">
+                        <p className="text-3xl font-black tracking-tighter">
+                          {player.name}.
+                        </p>
+                        <p className="text-lg font-black text-amber-100">
+                          {player.role}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute m-2 h-10 w-10 overflow-hidden rounded-xl bg-black/10">
                     <Image
                       src={team.logo}
                       alt={team.name}
@@ -65,42 +123,40 @@ export default function FavoritesPage() {
                       className="object-contain p-1.5"
                     />
                   </div>
-                  <div>
-                    <p className="text-[11px] uppercase tracking-[0.25em] text-neutral-400">
-                      {team.slug}
+                </div>
+                {/* 하단: 팀 정보 + 포지션 */}
+                <div className="w-full flex flex-col items-center justify-between mt-2 ">
+                  {champs.length === 0 ? (
+                    <p className="mt-1 text-[12px] text-neutral-500">
+                      등록된 모스트 챔피언 정보가 없어요.
                     </p>
-                    <p className="text-sm font-semibold">{team.name}</p>
-                  </div>
+                  ) : (
+                    <>
+                      <h4 className="text-sm tracking-tighter">
+                        TOP 3 모스트 챔피언 승률
+                      </h4>
+                      <ul className="w-full mt-2 space-y-1 text-[13px]">
+                        {champs.slice(0, 3).map((champ) => (
+                          <li
+                            key={champ.key}
+                            className="flex items-center justify-around"
+                          >
+                            <span className="w-[50%] text-center text-neutral-500">
+                              {champ.name}
+                            </span>
+                            <span className="w-[50%] text-center text-neutral-500">
+                              {champ.winRate}%
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </>
+                  )}
                 </div>
-                <p className="text-xs text-neutral-400">{player.role}</p>
-              </div>
-              <div className="flex flex-col gap-4 md:flex-row">
-                {/* 선수 이미지 영역 */}
-                <div className="relative h-40 flex-1 overflow-hidden rounded-2xl bg-black/60">
-                  <Image
-                    src={player.image}
-                    alt={player.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-3 left-3">
-                    <p className="text-[11px] text-neutral-300">PLAYER</p>
-                    <p className="text-lg font-bold">{player.name}</p>
-                  </div>
-                </div>
-
-                {/* 우측: 모스트 챔피언 섹션 재사용 */}
-                <div className="flex-1">
-                  <PlayerMostChamps
-                    champs={player.mostChamps}
-                    accentColor={team.colors.accent}
-                  />
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+              </motion.article>
+            );
+          })}
+        </motion.div>
       )}
     </main>
   );
