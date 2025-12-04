@@ -23,7 +23,7 @@ export default function HomePage() {
         </div>
 
         <div className="">
-          <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden">
+          <div className="p-9 lg:p-0 relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden ">
             <h2 className="flex w-full mb-8 pb-2 text-left text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
               <strong
