@@ -80,7 +80,7 @@ export function PlayerMostChamps({
       >
         Most Champion.
       </motion.h4>
-      <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-5">
+      <div className="grid grid-cols-3 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-3 gap-5">
         {top3.map((champ, index) => (
           <motion.div
             variants={cardVariants}
@@ -108,13 +108,16 @@ export function PlayerMostChamps({
             />
             {/* 챔피언 이름 + 승률 */}
             <div className="w-full absolute top-1/2 left-1/2 -translate-1/2 text-center -z-10">
-              <p className="text-5xl font-black text-neutral-100 ">
+              <p className="sm:text-2xl lg:text-5xl md:text-4xl font-black text-neutral-100 ">
                 {champ.name}
                 <br />
                 WIN RATE
               </p>
 
-              <p className="text-7xl font-black" style={{ color: "#FFFFFF" }}>
+              <p
+                className="sm:text-4xl lg:text-7xl md:text-6xl font-black"
+                style={{ color: "#FFFFFF" }}
+              >
                 <WinRateCounter value={champ.winRate} accentColor={"#FFFFFF"} />
                 %
               </p>

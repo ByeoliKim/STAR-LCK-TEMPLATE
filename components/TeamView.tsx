@@ -163,7 +163,7 @@ export function TeamView({ team }: TeamViewProps) {
             <AnimatePresence mode="wait">
               {selectedPlayer && (
                 <motion.div
-                  key={selectedPlayer.id} // ⭐ 포지션 바뀔 때마다 모션 다시 실행
+                  key={selectedPlayer.id} // 포지션 바뀔 때마다 모션 다시 실행
                   variants={playerCardVariants}
                   initial="hidden"
                   animate="visible"
@@ -229,10 +229,12 @@ export function TeamView({ team }: TeamViewProps) {
                   showBorder={false}
                   className="custom-class"
                 >
-                  <h4 className="font-black text-7xl text-center tracking-tighter">
+                  <h4 className="font-black text-7xl lg:text-7xl md:text-6xl sm:text-5xl text-center tracking-tighter">
                     Legends Never Die
                     <br />
-                    <strong className="text-9xl">{team.name}.</strong>
+                    <strong className="lg:text-9xl sm:text-6xl">
+                      {team.name}.
+                    </strong>
                   </h4>
                 </GradientText>
               </motion.div>
