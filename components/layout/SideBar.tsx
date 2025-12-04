@@ -13,6 +13,7 @@ export function SideBar() {
   const favorites = useLckStore((s) => s.favorites);
   const isOpen = useLckStore((s) => s.isFavoritesSidebarOpen);
   const setOpen = useLckStore((s) => s.setFavoritesSidebarOpen);
+  const toggleFavorite = useLckStore((s) => s.toggleFavorite);
 
   // 찜한 게 없을 경우에는 안 보여 줌
   if (!favorites.length || !isOpen) {
@@ -46,8 +47,17 @@ export function SideBar() {
           return (
             <div
               key={`${ref.teamSlug}-${ref.playerId}`}
-              className="flex gap-3 rounded-xl bg-white/5 p-2"
+              className="relative flex gap-3 rounded-xl bg-white/5 p-2"
             >
+              {/* 개별 관심 해제 버튼 */}
+              <button
+                type="button"
+                onClick={() => toggleFavorite(ref)}
+                className="absolute right-2 top-2 flex h-5 w-5 cursor-pointer items-center justify-center rounded-full bg-black/60 text-[10px] text-neutral-300 hover:bg-black/80"
+                title="관심 해제"
+              >
+                ✕
+              </button>
               <div className="relative h-13 w-13 overflow-hidden rounded-lg bg-black/40">
                 <Image
                   src={player.image}
