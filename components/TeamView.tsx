@@ -13,13 +13,27 @@ import type { Team, LolRole } from "@/lib/config/teams";
 import { PlayerCard } from "./PlayerCard";
 import { RepeatedOutlineText } from "./RepeatedOutlineText";
 import ScrollVelocity from "./ScrollVelocity";
+import GradientText from "./GradientText";
 import { useLckStore } from "@/lib/store/lckStore";
 import { PlayerMostChamps } from "./PlayerMostChamps";
+import { motion } from "motion/react";
 
 const ROLES: LolRole[] = ["TOP", "JGL", "MID", "BOT", "SPT"];
 
 type TeamViewProps = {
   team: Team;
+};
+
+const revealTextVariants = {
+  hidden: { y: "-100%", opacity: 0 },
+  visible: {
+    y: "0%",
+    opacity: 1,
+    transition: {
+      duration: 1.2,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
 };
 
 export function TeamView({ team }: TeamViewProps) {
@@ -154,11 +168,35 @@ export function TeamView({ team }: TeamViewProps) {
           </div>
         )}
         <div className="mx-auto max-w-6xl my-30">
-          <h4 className="font-black text-7xl text-center">
-            Legends Never Die
-            <br />
-            <strong className="text-9xl">{team.name}.</strong>
-          </h4>
+          {/* 바깥 모션: 스크롤 트리거만 담당 */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.5 }}
+          >
+            <div className="overflow-hidden">
+              <motion.div variants={revealTextVariants}>
+                <GradientText
+                  colors={[
+                    team.colors.primary,
+                    team.colors.accent,
+                    team.colors.primary,
+                    team.colors.accent,
+                    team.colors.primary,
+                  ]}
+                  animationSpeed={8}
+                  showBorder={false}
+                  className="custom-class"
+                >
+                  <h4 className="font-black text-7xl text-center tracking-tighter">
+                    Legends Never Die
+                    <br />
+                    <strong className="text-9xl">{team.name}.</strong>
+                  </h4>
+                </GradientText>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </>

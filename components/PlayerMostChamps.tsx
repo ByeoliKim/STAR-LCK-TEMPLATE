@@ -96,7 +96,7 @@ export function PlayerMostChamps({
               transition: { duration: 0.25, ease: "easeOut" },
             }}
             key={champ.key}
-            className="relative aspect-4/5 overflow-hidden"
+            className="relative aspect-4/5 overflow-hidden rounded-xl"
             style={{}}
           >
             {/* 챔피언 이미지 */}
@@ -104,23 +104,18 @@ export function PlayerMostChamps({
               src={champ.image}
               alt={champ.name}
               fill
-              className="object-cover hover:scale-120 transition duration-600 ease-in"
+              className="opacity-50 object-cover scale-150 hover:scale-100 transition duration-600 ease-in"
             />
             {/* 챔피언 이름 + 승률 */}
-            <div className="absolute top-1/2 left-1/2 -translate-1/2 text-center">
-              <p className="text-5xl font-black text-neutral-100 opacity-50">
+            <div className="w-full absolute top-1/2 left-1/2 -translate-1/2 text-center -z-10">
+              <p className="text-5xl font-black text-neutral-100 ">
                 {champ.name}
+                <br />
                 WIN RATE
               </p>
 
-              <p
-                className="text-7xl font-black"
-                style={{ color: accentColor ?? "#cccccc" }}
-              >
-                <WinRateCounter
-                  value={champ.winRate}
-                  accentColor={accentColor}
-                />
+              <p className="text-7xl font-black" style={{ color: "#FFFFFF" }}>
+                <WinRateCounter value={champ.winRate} accentColor={"#FFFFFF"} />
                 %
               </p>
             </div>
