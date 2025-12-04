@@ -16,7 +16,7 @@ export default function Header() {
           </Link>
           <ul className="absolute inset-0 transform translate-y-[60px] uppercase text-center text-sm tracking-tighter text-amber-50">
             <li>
-              <Link href="/favorites">🩶</Link>
+              <Link href="/favorites">🤍</Link>
             </li>
             <li>
               <Link href="/teams/t1">T1</Link>
