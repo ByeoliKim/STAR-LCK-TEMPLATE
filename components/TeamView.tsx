@@ -16,7 +16,7 @@ import ScrollVelocity from "./ScrollVelocity";
 import GradientText from "./GradientText";
 import { useLckStore } from "@/lib/store/lckStore";
 import { PlayerMostChamps } from "./PlayerMostChamps";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 
 const ROLES: LolRole[] = ["TOP", "JGL", "MID", "BOT", "SPT"];
 
@@ -32,6 +32,32 @@ const revealTextVariants = {
     transition: {
       duration: 1.2,
       ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
+const playerCardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+    scale: 0.97,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -16,
+    scale: 0.98,
+    transition: {
+      duration: 0.25,
+      ease: "easeInOut",
     },
   },
 };
@@ -94,7 +120,12 @@ export function TeamView({ team }: TeamViewProps) {
           {/* =======================
             좌측: 롤 포지션 탭 영역
            ======================= */}
-          <aside className="absolute left-0 top-1/2 z-10 flex -translate-y-1/2 flex-col gap-3 bg-[#00000078] px-4 py-6">
+          <aside
+            className="absolute left-0 top-1/2 z-52 flex -translate-y-1/2 flex-col gap-3 bg-[#00000078] px-4 py-6"
+            style={{
+              borderRadius: "0 40px 40px 0",
+            }}
+          >
             {ROLE_TABS.map(({ key, icon }) => {
               const player = team.players.find((p) => p.role === key);
               const isActive = selectedRole === key;
@@ -126,13 +157,23 @@ export function TeamView({ team }: TeamViewProps) {
           {/* =======================
               중앙 영역 : 플레이어 카드 + BG RepeatedOutlineText
              ======================= */}
+
           <main className="relative flex items-center justify-center h-full">
             {/* player 프로필 카드 */}
-            {selectedPlayer && (
-              <div className="relative w-full z-1">
-                <PlayerCard player={selectedPlayer} team={team} />
-              </div>
-            )}
+            <AnimatePresence mode="wait">
+              {selectedPlayer && (
+                <motion.div
+                  key={selectedPlayer.id} // ⭐ 포지션 바뀔 때마다 모션 다시 실행
+                  variants={playerCardVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  className="relative z-10 w-full max-w-6xl"
+                >
+                  <PlayerCard player={selectedPlayer} team={team} />
+                </motion.div>
+              )}
+            </AnimatePresence>
             {/* player name 텍스트 반복 (백그라운드 연출용)  */}
             {selectedPlayer && (
               <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-start mix-blend-multiply overflow-hidden">
