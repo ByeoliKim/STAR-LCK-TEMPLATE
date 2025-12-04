@@ -16,7 +16,7 @@ import ScrollVelocity from "./ScrollVelocity";
 import GradientText from "./GradientText";
 import { useLckStore } from "@/lib/store/lckStore";
 import { PlayerMostChamps } from "./PlayerMostChamps";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, type Variants, AnimatePresence } from "motion/react";
 
 const ROLES: LolRole[] = ["TOP", "JGL", "MID", "BOT", "SPT"];
 
@@ -24,7 +24,7 @@ type TeamViewProps = {
   team: Team;
 };
 
-const revealTextVariants = {
+const revealTextVariants: Variants = {
   hidden: { y: "-100%", opacity: 0 },
   visible: {
     y: "0%",
@@ -36,7 +36,7 @@ const revealTextVariants = {
   },
 };
 
-const playerCardVariants = {
+const playerCardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 24,

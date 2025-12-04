@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import { TEAM_CONFIGS, type Team, type Player } from "@/lib/config/teams";
 import { useLckStore, type FavoritePlayerRef } from "@/lib/store/lckStore";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 type FavoritePlayerResolved = {
   ref: FavoritePlayerRef;
@@ -24,7 +24,7 @@ const listVariants = {
 };
 
 // 개별 카드 모션
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: -20,

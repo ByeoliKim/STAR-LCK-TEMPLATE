@@ -3,7 +3,7 @@
 // 모스트챔피언 TOP3 노출시키는 컴포넌트
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 import type { MostChamp } from "@/lib/config/teams";
 import { WinRateCounter } from "./WinRateCounter";
 
@@ -23,7 +23,7 @@ const containerVariants = {
 };
 
 // motion.h4 Most Champion 타이틀
-const titleVariants = {
+const titleVariants: Variants = {
   hidden: { opacity: 0, x: -160 },
   visible: {
     opacity: 1,
@@ -36,7 +36,7 @@ const titleVariants = {
 };
 // 카드: index에 따라 다른 모션 (fan-out 효과)
 // custom = 0,1,2 (왼, 중, 오른)
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: (index: number) => ({
     opacity: 0,
     y: 30,
