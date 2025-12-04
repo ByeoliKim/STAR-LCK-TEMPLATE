@@ -1,7 +1,6 @@
 import Image from "next/image";
-import mainBanner from "@/public/main/ddb_1_img.png";
+import mainBanner from "@/public/main/main_visual.png";
 import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
-import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -25,7 +24,7 @@ export default function HomePage() {
 
         <div className="">
           <div className="relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden">
-            <h2 className="flex w-full mb-3 pb-2 text-left text-5xl font-black tracking-tighter border-b">
+            <h2 className="flex w-full mb-8 pb-2 text-left text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
               <strong
                 style={{
@@ -37,7 +36,7 @@ export default function HomePage() {
             </h2>
             <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
               <div className="">
-                <Image src={mainBanner} alt="main banner" width={600} />
+                <Image src={mainBanner} alt="main banner" width={800} />
               </div>
             </section>
             <div className="absolute lg:translate-y-[2em] md:translate-y-[-3em] sm:translate-y-[-2em] w-full z-9">
@@ -51,30 +50,6 @@ export default function HomePage() {
               />
             </div>
           </div>
-        </div>
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 px-4 py-4 bg-amber-50 z-10">
-          <ul className="text-black text-5xl font-black tracking-tighter">
-            <li>
-              <Link href="/teams/t1">
-                <span>T1</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/teams/geng">
-                <span>GEN</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/teams/kt">
-                <span>KT</span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/teams/hle">
-                <span>HLE</span>
-              </Link>
-            </li>
-          </ul>
         </div>
       </main>
     </>
