@@ -1,3 +1,9 @@
+![alt text](image-1.png)
+![alt text](image-2.png)
+![alt text](image-3.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+
 # 🏆 STAR LCK Template
 Next.js / Zustand / Framer Motion 기반으로 제작한 김별이의 덕심이 담긴 LCK 템플릿 페이지입니다. 컴포넌트는 UI 역할 단위로 분리하여 재사용성과 관리 효율을 높이려고 고민했습니다. 동일한 레이아웃에 4개의 팀 색깔이 잘 보이도록 랜딩 페이지를 만들었습니다.
 
