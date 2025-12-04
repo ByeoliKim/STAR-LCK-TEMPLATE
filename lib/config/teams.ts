@@ -53,7 +53,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     colors: {
       primary: "#e2012d",
       secondary: "#111111",
-      accent: "#FFFFFF",
+      accent: "#caaa77",
     },
     players: [
       {
@@ -500,7 +500,7 @@ export const TEAM_CONFIGS: Record<string, Team> = {
     slogan2: "WHY NOT?! SUPER DIVE",
     colors: {
       primary: "#f37321",
-      secondary: "#FFFFFF",
+      secondary: "#404041",
       accent: "#bbbdc0",
     },
     players: [
