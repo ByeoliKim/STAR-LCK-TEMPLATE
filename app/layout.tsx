@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SideBar } from "@/components/layout/SideBar";
+import { FloatingFavoritesToggle } from "@/components/layout/FloatingFavoritesToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,7 @@ export default function RootLayout({
         <Header />
         {children}
         <SideBar />
+        <FloatingFavoritesToggle />
         <Footer />
       </body>
     </html>

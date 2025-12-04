@@ -37,10 +37,10 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
       <button
         type="button"
         onClick={handleToggleFavorite}
-        className="absolute left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 text-xs"
+        className="absolute left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 text-sm cursor-pointer hover:bg-black/70 transition duration-100 ease-in"
       >
         <span className={isFavorite ? "text-yellow-300" : "text-neutral-400"}>
-          {isFavorite ? "★ 찜됨" : "☆ 찜하기"}
+          {isFavorite ? "★ FAVORITE" : "☆ FAVORITE"}
         </span>
       </button>
       <h2 className="figtree absolute left-0 top-[-70px] h-auto w-full pb-2 text-left text-5xl font-black tracking-tighter border-b">
