@@ -33,11 +33,10 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
   return (
     <div className={`group relative flex`}>
       {/* 이미지 영역 */}
-      {/* 우측 상단 찜 버튼 */}
       <button
         type="button"
         onClick={handleToggleFavorite}
-        className="absolute left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 text-sm cursor-pointer hover:bg-black/70 transition duration-100 ease-in"
+        className="absolute z-52 left-4 bottom-4 rounded-full bg-black/60 px-3 py-1 text-lg cursor-pointer hover:bg-black/70 transition duration-100 ease-in"
       >
         <span className={isFavorite ? "text-yellow-300" : "text-neutral-400"}>
           {isFavorite ? "★ FAVORITE" : "☆ FAVORITE"}
