@@ -61,6 +61,7 @@ export function PlayerCard({ player, team }: PlayerCardProps) {
             src={player.image}
             alt={player.name}
             fill
+            priority
             className={`object-cover w-full h-full ${
               isPlaceholder ? "grayscale opacity-70" : ""
             }`}
