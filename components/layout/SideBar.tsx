@@ -21,7 +21,7 @@ export function SideBar() {
   }
 
   return (
-    <aside className="fixed left-4 top-4 z-51 w-72 flex flex-col gap-3 overflow-y-auto rounded-xl bg-black/80 p-4 text-xs backdrop-blur-xl text-white">
+    <aside className="fixed left-4 top-4 z-55 w-72 flex flex-col gap-3 overflow-y-auto rounded-xl bg-black/80 p-4 text-xs backdrop-blur-xl text-white">
       <div className="flex justify-between items-center">
         <h3 className="text-sm tracking-tighter uppercase">Favorite 🤍</h3>
         {/* 닫기 버튼 */}

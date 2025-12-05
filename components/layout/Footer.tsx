@@ -4,7 +4,7 @@ import ShinyText from "@/components/ShinyText";
 export default function Footer() {
   return (
     <>
-      <footer className="py-6">
+      <footer className="py-6 bg-[#0a0a0a]">
         <div className="flex justify-center items-center">
           <ShinyText
             text="© 2025 KIM STAR. All rights reserved."

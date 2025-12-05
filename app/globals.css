@@ -174,3 +174,10 @@ body {
 .sidebar-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.1);
 }
+
+/* ios 모바일 대응 */
+@supports (-webkit-touch-callout: none) {
+  .IOS-CUSTOM {
+    mix-blend-mode: normal !important;
+  }
+}

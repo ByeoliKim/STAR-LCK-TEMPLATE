@@ -62,10 +62,10 @@ export default function FavoritesPage() {
       {favoritePlayers.length === 0 ? null : (
         <div className="mx-auto flex max-w-6xl items-center justify-between">
           <div>
-            <h2 className="figtree text-5xl font-black tracking-tighter">
+            <h2 className="text-white/80 figtree text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter">
               FAVORITE LIST.
             </h2>
-            <p>관심 플레이어가 노출됩니다.</p>
+            <p className="text-white/70">관심 플레이어가 노출됩니다.</p>
           </div>
         </div>
       )}
@@ -105,11 +105,11 @@ export default function FavoritesPage() {
                       <p className="text-[16px] text-neutral-300 font-black tracking-tighter">
                         PLAYER
                       </p>
-                      <div className="w-full flex items-end justify-between">
-                        <p className="text-3xl font-black tracking-tighter">
+                      <div className="w-full flex items-baseline justify-between">
+                        <p className="text-neutral-100 text-xl md:text-2xl lg:text-3xl font-black tracking-tighter">
                           {player.name}.
                         </p>
-                        <p className="text-lg font-black text-amber-100">
+                        <p className="text-sm md:text-xl lg:text-lg font-black text-amber-100">
                           {player.role}
                         </p>
                       </div>
@@ -132,7 +132,7 @@ export default function FavoritesPage() {
                     </p>
                   ) : (
                     <>
-                      <h4 className="text-sm tracking-tighter">
+                      <h4 className="text-white/70 text-sm tracking-tighter">
                         TOP 3 모스트 챔피언 승률
                       </h4>
                       <ul className="w-full mt-2 space-y-1 text-[13px]">

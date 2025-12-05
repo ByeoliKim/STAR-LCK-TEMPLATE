@@ -24,22 +24,16 @@ export default function HomePage() {
 
         <div className="">
           <div className="p-9 lg:p-0 relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden ">
-            <h2 className="flex w-full mb-8 pb-2 text-left text-5xl font-black tracking-tighter border-b">
+            <h2 className="flex flex-col md:flex-row lg:flex-row w-full mb-30 md:mb-8 lg:mb-8 pb-2 text-left text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter border-b">
               STAR TEMPLATE.
-              <strong
-                style={{
-                  marginLeft: "auto",
-                }}
-              >
-                LCK Ver.
-              </strong>
+              <strong className="md:ml-auto lg:ml-auto">LCK Ver.</strong>
             </h2>
-            <section className="relative lg:translate-y-[-4em] md:translate-y-[-3em] sm:translate-y-[-2em] z-10">
+            <section className="relative translate-y-[-8em] md:translate-y-[-3em] lg:translate-y-[-4em] z-10">
               <div className="">
                 <Image src={mainBanner} alt="main banner" width={800} />
               </div>
             </section>
-            <div className="absolute lg:translate-y-[2em] md:translate-y-[-3em] sm:translate-y-[-2em] w-full z-9">
+            <div className="flex justify-center absolute translate-y-[-2em] md:translate-y-[-3em] lg:translate-y-[2em] w-full z-9">
               <RepeatedOutlineText
                 text="KIMSTAR"
                 repeat={5}
