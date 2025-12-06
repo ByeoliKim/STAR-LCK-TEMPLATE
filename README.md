@@ -55,7 +55,7 @@ Next.js / Zustand / Framer Motion 기반으로 제작한 김별이의 덕심이 
 
 | Category | Tech |
 |---------|------|
-| Frontend Framework | **Next.js 15 / App Router** |
+| Frontend Framework | **Next.js 16 / App Router** |
 | CSS | **Tailwind CSS v4** |
 | Animation | **Motion / Framer Motion** |
 | State Management | **Zustand + persist** |
