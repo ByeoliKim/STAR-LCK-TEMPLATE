@@ -21,11 +21,10 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 opacity-[0.1] mix-blend-overlay">
           <div className="h-full w-full bg-[url('/noise.png')] bg-repeat" />
         </div>
-
         <div className="">
           <div className="p-9 lg:p-0 relative w-full max-w-5xl flex flex-col min-h-screen items-center justify-center m-auto overflow-hidden ">
             <h2 className="flex flex-col md:flex-row lg:flex-row w-full mb-30 md:mb-8 lg:mb-8 pb-2 text-left text-3xl md:text-4xl lg:text-5xl font-black tracking-tighter border-b">
-              STAR TEMPLATE.
+              STAR TEMPLATE...
               <strong className="md:ml-auto lg:ml-auto">LCK Ver.</strong>
             </h2>
             <section className="relative translate-y-[-8em] md:translate-y-[-3em] lg:translate-y-[-4em] z-10">
