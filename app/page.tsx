@@ -1,6 +1,7 @@
 import Image from "next/image";
 import mainBanner from "@/public/main/main_visual.png";
 import { RepeatedOutlineText } from "@/components/RepeatedOutlineText";
+import DashboardBlock from "@/components/charts/DashboardBlock";
 
 export default function HomePage() {
   return (
@@ -29,7 +30,12 @@ export default function HomePage() {
             </h2>
             <section className="relative translate-y-[-8em] md:translate-y-[-3em] lg:translate-y-[-4em] z-10">
               <div className="">
-                <Image src={mainBanner} alt="main banner" width={800} />
+                <Image
+                  src={mainBanner}
+                  alt="main banner"
+                  width={800}
+                  priority
+                />
               </div>
             </section>
             <div className="flex justify-center absolute translate-y-[-2em] md:translate-y-[-3em] lg:translate-y-[2em] w-full z-9">
@@ -44,6 +50,7 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+        <DashboardBlock />
       </main>
     </>
   );
