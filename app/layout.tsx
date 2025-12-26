@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { SideBar } from "@/components/layout/SideBar";
 import { FloatingFavoritesToggle } from "@/components/layout/FloatingFavoritesToggle";
+import Providers from "@/components/providers/providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,15 +28,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <SideBar />
-        <FloatingFavoritesToggle />
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <SideBar />
+          <FloatingFavoritesToggle />
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
