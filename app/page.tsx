@@ -50,7 +50,6 @@ export default function HomePage() {
             </div>
           </div>
         </div>
-        <DashboardBlock />
       </main>
     </>
   );
