@@ -17,7 +17,12 @@ export type FavoritePlayerRef = {
   playerId: string;
 };
 
+type DashboardRange = "24h" | "7d" | "30d";
+type DashboardQueue = "ALL" | "RANKED_SOLO" | "RANKED_FLEK";
+
 type LckState = {
+  // 공통 UI 상태 (랜딩 팬 페이지)
+
   // 현재 선택된 롤 포지션 (TOP / JGL / MID / BOT / SPT)
   selectedRole: LolRole;
   setSelectedRole: (role: LolRole) => void;
@@ -33,6 +38,15 @@ type LckState = {
   // 전역 사이드바 on/off 상태
   isFavoritesSidebarOpen: boolean;
   setFavoritesSidebarOpen: (open: boolean) => void;
+
+  // 팬 대시보드 전용 상태
+
+  // 통계 기간 필터
+  dashboardRange: DashboardRange;
+  setDashboardRange: (range: DashboardRange) => void;
+  // 큐 타입 필터
+  dashboardQueue: DashboardQueue;
+  setDashboardQueue: (queue: DashboardQueue) => void;
 };
 
 // 스토어 생성
@@ -69,12 +83,24 @@ export const useLckStore = create<LckState>()(
 
       isFavoritesSidebarOpen: true, // 디폴트 상태는 ON
       setFavoritesSidebarOpen: (open) => set({ isFavoritesSidebarOpen: open }),
+
+      // 팬 대시보드 필터 초기값
+
+      //기본 통계 기간 : 최근 7일
+      dashboardRange: "7d",
+      setDashboardRange: (range) => set({ dashboardRange: range }),
+
+      //기본 큐: 전체
+      dashboardQueue: "ALL",
+      setDashboardQueue: (queue) => set({ dashboardQueue: queue }),
     }),
     {
       name: "lck-store",
       partialize: (state) => ({
         favorites: state.favorites,
         isFavoritesSidebarOpen: state.isFavoritesSidebarOpen,
+        dashboardRange: state.dashboardRange,
+        dashboardQueue: state.dashboardQueue,
       }),
     }
   )
