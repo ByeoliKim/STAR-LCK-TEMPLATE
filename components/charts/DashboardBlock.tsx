@@ -3,8 +3,12 @@
 import { useTeamStats } from "@/hooks/useTeamStats";
 import TierDistributionChart from "./TierDistributionChart";
 
-export default function DashboardBlock() {
-  const { data, isLoading, isError } = useTeamStats("t1", "7d");
+type Props = {
+  teamSlug: string;
+};
+
+export default function DashboardBlock({ teamSlug }: Props) {
+  const { data, isLoading, isError } = useTeamStats(teamSlug);
 
   if (isLoading)
     return <div className="rounded-2xl border p-4">로딩 중...</div>;
