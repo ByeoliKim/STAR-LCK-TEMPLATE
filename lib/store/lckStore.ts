@@ -18,7 +18,7 @@ export type FavoritePlayerRef = {
 };
 
 type DashboardRange = "24h" | "7d" | "30d";
-type DashboardQueue = "ALL" | "RANKED_SOLO" | "RANKED_FLEK";
+type DashboardQueue = "ALL" | "RANKED_SOLO" | "RANKED_FLEX";
 
 type LckState = {
   // 공통 UI 상태 (랜딩 팬 페이지)

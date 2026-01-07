@@ -7,7 +7,7 @@ export default function FanPage() {
       <p className="mb-6 text-sm text-zinc-600">
         사용자들의 데이터를 기반으로 노출시킵니다.
       </p>
-      <DashboardBlock />
+      {/* <DashboardBlock /> */}
     </main>
   );
 }

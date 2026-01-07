@@ -1,11 +1,9 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, type UseQueryResult } from "@tanstack/react-query";
 import { useLckStore } from "@/lib/store/lckStore";
 
-type TierItem = { tier: string; count: number };
-
-type TeamStatsResponse = {
+export type TeamStatsResponse = {
   ok: boolean;
   meta: {
     teamSlug: string;
@@ -13,27 +11,32 @@ type TeamStatsResponse = {
     sampleSize: number;
     updatedAt: string;
   };
-  tierDistribution: TierItem[];
+  tierDistribution: Array<{ tier: string; count: number }>;
 };
 
-export function useTeamStats(teamSlug: string) {
-  // store 에서 필터 상태 읽기
+export function useTeamStats(
+  teamSlug: string
+): UseQueryResult<TeamStatsResponse, Error> {
   const range = useLckStore((s) => s.dashboardRange);
   const queue = useLckStore((s) => s.dashboardQueue);
 
-  return useQuery({
-    // 필터가 바뀌면 queryKey 가 바뀌고 자동으로 재요청된다
+  return useQuery<TeamStatsResponse, Error>({
     queryKey: ["teamStats", teamSlug, range, queue],
     queryFn: async (): Promise<TeamStatsResponse> => {
       const params = new URLSearchParams({ teamSlug, range, queue });
       const res = await fetch(`/api/team/stats?${params.toString()}`);
+
       if (!res.ok) throw new Error("Failed to fetch team stats");
-      return res.json();
+
+      // ✅ 여기서 타입을 확정시켜줌
+      return (await res.json()) as TeamStatsResponse;
     },
-    // 필터 바꿀 때 부드럽게~ 이전 데이터 유지한채로 새로고침
+
     staleTime: 60_000,
     gcTime: 10 * 60_000,
-    keepPreviousData: true,
+
+    // ✅ React Query v5에서 이전 데이터 유지(keepPreviousData 대체)
+    placeholderData: (prev) => prev,
     refetchOnWindowFocus: false,
   });
 }
