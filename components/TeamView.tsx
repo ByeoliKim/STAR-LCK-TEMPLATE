@@ -111,7 +111,7 @@ export function TeamView({ team }: TeamViewProps) {
         // 팀 페이지의 배경색은 팀 메인컬러 / 서브컬러로 그라데이션 처리함
         // 컬러 팔레트만 바꾸면 전체 페이지 무드 바뀌도록 설계
         // lib/config/teams.ts colors 참고
-        className="min-h-[200vh] px-4 py-10 text-white mix-blend-difference IOS-CUSTOM"
+        className="min-h-[200vh] px-4 py-10 text-white IOS-CUSTOM"
         style={{
           background: `linear-gradient(135deg, ${team.colors.primary}, ${team.colors.secondary})`,
         }}
